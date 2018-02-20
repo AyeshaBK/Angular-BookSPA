@@ -1,0 +1,85 @@
+<!-- bookManager.html -->
+<div class="manager_container">
+  <h2>{{message}}</h2>
+  <br/>
+
+  <form class="form-search">
+    <input type="search" name="search" placeholder="I am looking for.." ng-model="searchKeyword">
+    <button type="submit">Search</button>
+    <i class="fa fa-search"></i>
+  </form>
+
+  <table class="table table-bordered">
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Description</th>
+      <th>ISBN</th>
+      <th>Delete</th>
+    </tr>
+    <tr ng-repeat="book in library  | filter: searchKeyword ">
+
+      <td>
+        <span editable-text="book.title">
+                  {{book.title || 'empty'}}
+        </span>
+      </td>
+      <td>
+        <span editable-text="book.author">
+                  {{book.author || 'empty'}}
+        </span>
+      </td>
+      <td>
+        <span editable-text="book.description">
+                    {{book.description || 'empty'}}
+        </span>
+      </td>
+      <td>
+        <span editable-text="book.isbn">
+                    {{book.isbn || 'empty'}}
+        </span>
+      </td>
+      <td>
+        <input type="button" value="Remove" class="btn btn-primary" ng-click="removeRow(book.title)" />
+      </td>
+    </tr>
+  </table>
+
+  <h2>Create a Book</h2>
+
+  <br/>
+  <br/>
+  <div id="form">
+    <form class="form-horizontal" role="form" ng-submit="addRow()">
+      <div class="form-group">
+        <label class="col-md-2 control-label">Title</label>
+        <div class="col-md-4">
+          <input type="text" class="form-control" name="title" ng-model="title" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label">Author</label>
+        <div class="col-md-4">
+          <input type="text" class="form-control" name="author" ng-model="author" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label">Description</label>
+        <div class="col-md-4">
+          <input type="text" class="form-control" name="description" ng-model="description" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label">ISBN</label>
+        <div class="col-md-4">
+          <input type="text" class="form-control" name="isbn" ng-model="isbn" />
+        </div>
+      </div>
+      <div class="form-group">
+        <div style="padding-left:110px">
+          <input type="submit" value="Submit" class="btn btn-primary" />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
